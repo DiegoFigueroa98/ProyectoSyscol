@@ -1,10 +1,24 @@
-import javax.swing.JOptionPane;
+package Ventanas;
+
+import Libreria.LibreriaSyscol;
 
 //Diego Aaron Figueroa Campos
 public class Solicitud extends javax.swing.JFrame {
 
     public Solicitud() {
         initComponents();
+        setLocationRelativeTo(null);
+        LibreriaSyscol lb = new LibreriaSyscol();
+        lb.validarSoloLetras(txtNombre);
+        lb.validarSoloNumeros(txtTelefono);
+        lb.evitarPegar(txtNombre);
+        lb.evitarPegar(txtTelefono);
+        String fecha = lb.obtenerFecha(jdcFechaVisita);
+        System.out.println(fecha);
+    }
+    
+    public void validarCampo(){
+        
     }
 
     @SuppressWarnings("unchecked")
@@ -53,6 +67,7 @@ public class Solicitud extends javax.swing.JFrame {
         lblHoraVisita.setFont(new java.awt.Font("SansSerif", 1, 14)); // NOI18N
         lblHoraVisita.setText("Hora de visita");
 
+        jdcFechaVisita.setDateFormatString("dd/MM/yyyy");
         jdcFechaVisita.setFont(new java.awt.Font("SansSerif", 0, 14)); // NOI18N
 
         try {
@@ -106,40 +121,19 @@ public class Solicitud extends javax.swing.JFrame {
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
-
-    /**
-    * Este método se encarga mostrar un saludo al usuario
-    * @author JuanDMeGon
-    * @param nombre es una cadena de texto con el nombre a usar
-    * @return El mensaje usado para el saludo
-   */
+    
     private void txtNombreKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtNombreKeyTyped
-        char validar = evt.getKeyChar();
 
-        if(Character.isDigit(validar)){
-            getToolkit().beep();
-            evt.consume();
-            JOptionPane.showMessageDialog(rootPane, "Sólo se permiten letras");
-        }
     }//GEN-LAST:event_txtNombreKeyTyped
 
     private void txtNombreActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtNombreActionPerformed
-        // TODO add your handling code here:
+
     }//GEN-LAST:event_txtNombreActionPerformed
 
     private void txtTelefonoKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtTelefonoKeyTyped
-          char validar = evt.getKeyChar();
 
-        if(Character.isLetter(validar)){   
-            getToolkit().beep();
-            evt.consume();
-            JOptionPane.showMessageDialog(rootPane, "Sólo se permiten números");
-        }
     }//GEN-LAST:event_txtTelefonoKeyTyped
 
-    /**
-     * @param args the command line arguments
-     */
     public static void main(String args[]) {
         
         java.awt.EventQueue.invokeLater(new Runnable() {
